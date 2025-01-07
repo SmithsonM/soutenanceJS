@@ -72,8 +72,8 @@
 <div class="card input">
     <div class="formulaire">
         <input type="number" id="longueur" placeholder="Longueur de la série">
-        <input type="number" id="borne-inf" placeholder="Borne inférieure">
-        <input type="number" id="borne-sup" placeholder="Borne supérieure">
+        <input type="number" id="lower" placeholder="Borne inférieure">
+        <input type="number" id="upper" placeholder="Borne supérieure">
         <button type="button" class="btn btn-primary" onclick="generateAndExtractMinMax()">
             Générer et extraire min & max
         </button>
@@ -83,11 +83,40 @@
 <!-- html display area wrapper -->
 <div class="card result" id="result"></div>
 
-<script type="text/javascript">
 
+<script type="text/javascript">
     // YOUR CODE HERE
-    // ...
-    
+
+    //------------------------------------------------------------
+    // generateAndExtractMinMax()
+    // generates a table of random numbers between 2 given values, and displays
+    // the lowest and the highest value
+    function generateAndExtractMinMax() {
+        //searches the document for the value with the id "longeur" and converts it to a number type data
+        let n = document.getElementById("longueur").value ;
+        //searches the document for the value with the id "min", and converts it to a number type data
+        let min = document.getElementById("lower").value ;
+        //searches the document for the value with the id "max" and converts it to a number type data
+        let max = document.getElementById("upper").value ;
+        //verifies that the text areas have valid numbers
+        if (n == "") {
+            displayOneResult("Please enter a serie length of 2 or higher !", "");
+            return
+        } else if (n < 2) {
+            displayOneResult("Please enter a serie length higher than 2 !", "");
+            return
+        } else {
+            //calls the function in js.tools to generate numbers using the User's values as parameters. Then, it stores these number in an array, which I define as "randomArray"
+            let randomArray = randomArrayOfIntFromInterval (n, min, max) ;
+            //sets the variables "arrayMin, arrayMax" as this minimum and maximum values that are in "randomArray", whilst using the spread operator to avoid any NaN errors.
+            let arrayMin = Math.min(...randomArray) ;
+            let arrayMax = Math.max(...randomArray) ;
+            // is used to verify the contents of "randomArray".
+            console.log(randomArray);
+            //Uses the tool provided to display the result to the user.
+            displayOneResult(arrayMin, arrayMax);
+        }
+    }
 </script>
 
 </body>
