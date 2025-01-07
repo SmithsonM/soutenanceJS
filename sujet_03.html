@@ -109,8 +109,11 @@
             //calls the function in js.tools to generate numbers using the User's values as parameters. Then, it stores these number in an array, which I define as "randomArray"
             let randomArray = randomArrayOfIntFromInterval (n, min, max) ;
             //sets the variables "arrayMin, arrayMax" as this minimum and maximum values that are in "randomArray", whilst using the spread operator to avoid any NaN errors.
+
+            //https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Spread_syntax
             let arrayMin = Math.min(...randomArray) ;
             let arrayMax = Math.max(...randomArray) ;
+            
             // is used to verify the contents of "randomArray".
             console.log(randomArray);
             //Uses the tool provided to display the result to the user.
